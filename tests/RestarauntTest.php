@@ -7,7 +7,7 @@
 
 require_once "src/Restaraunt.php";
 
-$server = 'mysql:host=localhost;dbname=restaraunt_search_test';
+$server = 'mysql:host=localhost;dbname=restaraunt_search';
 $username = 'root';
 $password = 'root';
 $DB = new PDO($server, $username, $password);
