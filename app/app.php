@@ -42,7 +42,7 @@
         $restaraunt = new Restaraunt($restaraunt_name, $id = null, $cuisine_id);
         $restaraunt->save();
         $cuisine = Cuisine::find($cuisine_id);
-        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => Restaraunt::getAll()));
+        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => $cuisine->getRestaraunts()));
     });
 
     $app->post("/delete_restaraunts", function() use ($app) {

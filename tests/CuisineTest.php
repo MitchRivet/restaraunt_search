@@ -18,6 +18,7 @@
         protected function tearDown()
         {
             Cuisine::deleteAll();
+            Restaraunt::deleteAll();
         }
 
         function test_getCuisineName()
@@ -73,7 +74,7 @@
             $test_cuisine2->save();
 
             //Act
-            
+
             $result = Cuisine::getAll();
 
             //Assert
@@ -107,6 +108,30 @@
             $result = Cuisine::find($test_cuisine->getId());
 
             $this->assertEquals($test_cuisine, $result);
+        }
+
+        function testsGetRestaraunts()
+        {
+            $cuisine_name = "Italian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_name, $id);
+            $test_cuisine->save();
+
+            $test_cuisine_id = $test_cuisine->getId();
+
+            $restaraunt_name = "Uncle Chuck's Friend Pig";
+            $test_restaraunt = new Restaraunt($restaraunt_name, $id, $test_cuisine_id);
+            $test_task->save();
+
+            $restaraunt_name2 = "Yum Yum Kitchen";
+            $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $test_cuisine_id);
+            $test_restaraunt2->save();
+
+            //Act
+            $result = $test_category->getTasks();
+
+            //Assert
+            $this->assertEquals([$test_task, $test_task2], $result);
         }
     }
 
