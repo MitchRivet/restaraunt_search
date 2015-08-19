@@ -5,12 +5,14 @@ class Restaraunt
 
     private $restaraunt_name;
     private $id;
+    private $cuisine_id;
 
     //Constructor
-    function __construct($restaraunt_name, $id = null)
+    function __construct($restaraunt_name, $id = null, $cuisine_id)
     {
         $this->restaraunt_name = $restaraunt_name;
         $this->id = $id;
+        $this->cuisine_id = $cuisine_id;
     }
 
     //Setters
@@ -30,10 +32,15 @@ class Restaraunt
       return $this->id;
     }
 
+    function getCuisineId()
+    {
+        return $this->cuisine_id;
+    }
+
     //Save function
     function save()
     {
-          $GLOBALS['DB']->exec("INSERT INTO restaraunts (restaraunt_name) VALUES ('{$this->getRestarauntName()}');");
+          $statement = $GLOBALS['DB']->exec("INSERT INTO restaraunts (restaraunt_name, cuisine_id) VALUES ('{$this->getRestarauntName()}', {$this->getCuisineId()})");
           $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
@@ -46,7 +53,8 @@ class Restaraunt
 
             $restaraunt_name = $restaraunt['restaraunt_name'];
             $id = $restaraunt['id'];
-            $new_restaraunt = new Restaraunt ($restaraunt_name, $id);
+            $cuisine_id = $restaraunt['cuisine_id'];
+            $new_restaraunt = new Restaraunt ($restaraunt_name, $id, $cuisine_id);
             array_push($restaraunts, $new_restaraunt);
         }
         return $restaraunts;

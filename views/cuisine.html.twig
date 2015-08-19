@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Restaraunt List</title>
+  </head>
+  <body>
+    <h1>{{ cuisine.getCuisineName }}</h1>
+
+    {% if restaraunts is not empty %}
+      <p>Here are the restaraunts:</p>
+      <ul>
+          {% for restaraunt in restaraunts %}
+            <li>{{ restaraunt.getRestarauntName }}</li>
+
+
+                </ul>
+          {% endfor %}
+      </ul>
+    {% endif %}
+
+    <h4>Add a restaraunt</h4>
+
+    <form action='/restaraunts' method='post'>
+        <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
+
+        <label for='RestarauntName'>restaraunt name</label>
+        <input id='RestarauntName' name='RestarauntName' type='text'>
+
+
+        <button type='submit'>Add restaraunt</button>
+    </form>
+
+    <form action='/delete_restaraunts' method = 'post'>
+        <button type='submit'>Clear</button>
+    </form>
+
+    <p><a href='/'>Home</a></p>
+
+  </body>
+</html>

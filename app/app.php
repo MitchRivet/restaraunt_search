@@ -33,17 +33,17 @@
 
     $app->get("/cuisines/{id}", function($id) use ($app) {
         $cuisine = Cuisine::find($id);
-        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => $cuisine->getTasks()));
+        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => $cuisine->getRestaraunts()));
     });
 
     $app->post("/restaraunts", function() use ($app) {
-        $restaraunt_name = $_POST['restaraunt_name'];
+        $restaraunt_name = $_POST['RestarauntName'];
         $cuisine_id = $_POST['cuisine_id'];
         $restaraunt = new Restaraunt($restaraunt_name, $id = null, $cuisine_id);
         $restaraunt->save();
         $cuisine = Cuisine::find($cuisine_id);
-        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunt' => Restaraunt::getAll()));
-    }
+        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => Restaraunt::getAll()));
+    });
 
     $app->post("/delete_restaraunts", function() use ($app) {
         Restaraunt::deleteAll();
@@ -51,7 +51,7 @@
     });
 
     $app->post("/cuisines", function() use ($app) {
-        $cuisine = new Cuisine($_POST['name']);
+        $cuisine = new Cuisine($_POST['CuisineName']);
         $cuisine->save();
         return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
     });

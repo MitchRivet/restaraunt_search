@@ -6,6 +6,7 @@
 */
 
 require_once "src/Restaraunt.php";
+require_once "src/Cuisine.php";
 
 $server = 'mysql:host=localhost;dbname=restaraunt_search';
 $username = 'root';
@@ -18,12 +19,19 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
       Restaraunt::deleteAll();
+      Cuisine::deleteAll();
     }
 
     function test_save()
     {
-        $restaraunt_name = "Yum Yum Kitchen";
-        $test_restaraunt = new Restaraunt($restaraunt_name);
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
+
+        $restaraunt_name = "Mama's Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
 
         $test_restaraunt->save();
 
@@ -33,57 +41,111 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
 
     function test_getAll()
     {
-      $restaraunt_name = "Yum Yum Kitchen";
-      $restaraunt_name2 = "Hot Dog Heaven";
-      $test_restaraunt = new Restaraunt($restaraunt_name);
-      $test_restaraunt->save();
-      $test_restaraunt2 = new Restaraunt($restaraunt_name2);
-      $test_restaraunt2->save();
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
 
-      $result = Restaraunt::getAll();
+        $restaraunt_name = "Mama's Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+        $test_restaraunt->save();
 
-      $this->assertEquals([$test_restaraunt, $test_restaraunt2], $result);
+        $restaraunt_name2 = "Big Bob's Fried Alligator";
+        $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $cuisine_id);
+        $test_restaraunt2->save();
 
+        //Act
+        $result = Restaraunt::getAll();
+
+        //Assert
+        $this->assertEquals([$test_restaraunt, $test_restaraunt2], $result);
     }
 
     function test_deleteAll()
     {
-      $restaraunt_name = "Yum Yum Kitchen";
-      $restaraunt_name2 = "Hot Dog Heaven";
-      $test_restaraunt = new Restaraunt($restaraunt_name);
-      $test_restaraunt->save();
-      $test_restaraunt2 = new Restaraunt($restaraunt_name2);
-      $test_restaraunt2->save();
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
 
-      Restaraunt::deleteAll();
+        $restaraunt_name = "Mama's Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+        $test_restaraunt->save();
 
-      $result = Restaraunt::getAll();
-      $this->assertEquals([], $result);
+        $restaraunt_name2 = "Big Bob's Fried Alligator";
+        $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $cuisine_id);
+        $test_restaraunt2->save();
+
+        //Act
+        Restaraunt::deleteAll();
+
+        //Assert
+        $result = Restaraunt::getAll();
+        $this->assertEquals([], $result);
     }
 
     function test_getId()
     {
-      $restaraunt_name = "Yum Yum Kitchen";
-      $id = 1;
-      $test_restaraunt = new Restaraunt($restaraunt_name, $id);
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
 
-      $result = $test_restaraunt->getId();
+        $restaraunt_name = "Mama's Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+        $test_restaraunt->save();
 
-      $this->assertEquals(1, $result);
+        //Act
+        $result = $test_restaraunt->getId();
+
+        //Assert
+        $this->assertEquals(true, is_numeric($result));
+    }
+
+    function test_getCuisineId()
+    {
+        //Arrange
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
+
+        $restaraunt_name = "Mama's Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+        $test_restaraunt->save();
+
+        //Act
+        $result = $test_restaraunt->getCuisineId();
+
+        //Assert
+        $this->assertEquals(true, is_numeric($result));
     }
 
     function test_find()
     {
-        $restaraunt_name = "Yum Yum Kitchen";
-        $restaraunt_name2 = "Hot Dog Heaven";
-        $test_restaraunt = new Restaraunt($restaraunt_name);
+        //Arrange
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
+
+        $restaraunt_name = "Mama's Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
         $test_restaraunt->save();
-        $test_restaraunt2 = new Restaraunt($restaraunt_name2);
+
+        $restaraunt_name2 = "Big Bob's Fried Alligator";
+        $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $cuisine_id);
         $test_restaraunt2->save();
 
-        $id = $test_restaraunt->getId();
-        $result = Restaraunt::find($id);
+        //Act
+        $result = Restaraunt::find($test_restaraunt->getId());
 
+        //Assert
         $this->assertEquals($test_restaraunt, $result);
     }
 

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>To Do List</title>
+    </head>
+    <body>
+        <h1>restaraunts</h1>
+
+        {% if restaraunts is not empty %}
+            <p>Here are all your restaraunts:</p>
+            <ul>
+                {% for restaraunt in restaraunts %}
+                    <li> {{ task.getRestarauntName }}</li>
+
+                    {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form action='/restaraunts' method='post'>
+            <label for = 'RestarauntName'>Name of Restaraunt</label>
+            <input id = 'RestarauntName' name='RestarauntName' type='text'>
+
+            <label for = 'due_date'>Due date</label>
+            <input id = 'due_date' name ='due_date' type='text'>
+
+            <button type='submit'>Add category</button>
+        </form>
+        <form action='/delete_restaraunts' method = 'post'>
+            <button type='submit'>Clear</button>
+        </form>
+
+        <p><a href='/'>Home</a></p>
+    </body>
+</html>

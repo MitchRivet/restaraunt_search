@@ -63,5 +63,22 @@
             }
             return $found_cuisine;
         }
+
+        function getRestaraunts()
+        {
+            $restaraunts = array();
+            $returned_restaraunts = $GLOBALS['DB']->query("SELECT * FROM restaraunts WHERE cuisine_id = {$this->getId()};");
+            foreach($returned_restaraunts as $restaraunt) {
+                $restaraunt_name = $restaraunt['restaraunt_name'];
+                $id = $restaraunt['id'];
+                $cuisine_id = $restaraunt['cuisine_id'];
+                $new_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+                array_push($restaraunts, $new_restaraunt);
+            }
+            return $restaraunts;
+        }
+
+
+
     }
 ?>
