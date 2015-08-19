@@ -72,13 +72,20 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
       $this->assertEquals(1, $result);
     }
 
+    function test_find()
+    {
+        $restaraunt_name = "Yum Yum Kitchen";
+        $restaraunt_name2 = "Hot Dog Heaven";
+        $test_restaraunt = new Restaraunt($restaraunt_name);
+        $test_restaraunt->save();
+        $test_restaraunt2 = new Restaraunt($restaraunt_name2);
+        $test_restaraunt2->save();
 
+        $id = $test_restaraunt->getId();
+        $result = Restaraunt::find($id);
 
-
-
-
-
-
+        $this->assertEquals($test_restaraunt, $result);
+    }
 
 }
 ?>

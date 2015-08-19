@@ -58,7 +58,19 @@ class Restaraunt
         $GLOBALS['DB']->exec("DELETE FROM restaraunts;");
     }
 
+    static function find($search_id)
+    {
+        $found_restaraunt = null;
+        $restaraunts = Restaraunt::getAll();
+        foreach ($restaraunts as $restaraunt) {
+            $restaraunt_id = $restaraunt->getId();
+            if ($restaraunt_id == $search_id) {
+                $found_restaraunt = $restaraunt;
+            }
+        }
 
+        return $found_restaraunt;
+    }
 }
 
 
