@@ -79,6 +79,12 @@ class Restaraunt
 
         return $found_restaraunt;
     }
+
+    function update($new_restaraunt_name)
+    {
+        $GLOBALS['DB']->exec("UPDATE restaraunts SET restaraunt_name = '{$new_restaraunt_name}' WHERE id = {$this->getId()};");
+        $this->setRestarauntName($new_restaraunt_name);
+    }
 }
 
 

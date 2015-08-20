@@ -149,5 +149,24 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($test_restaraunt, $result);
     }
 
+    function test_RestarauntUpdate()
+    {
+        //Arrange
+        $cuisine_name = "Italian";
+        $id = null;
+        $test_cuisine = new Cuisine($cuisine_name, $id);
+        $test_cuisine->save();
+
+        $restaraunt_name = "Mamas Home Country Cookin";
+        $cuisine_id = $test_cuisine->getId();
+        $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+        $new_restaraunt_name = "Wow! This is it!";
+
+        //Act
+        $test_restaraunt->update($new_restaraunt_name);
+
+        //Assert
+        $this->assertEquals("Wow! This is it!", $test_restaraunt->getRestarauntName());
+    }
 }
 ?>

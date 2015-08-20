@@ -6,15 +6,15 @@
     <h1>{{ cuisine.getCuisineName }}</h1>
 
     {% if restaraunts is not empty %}
-      <p>Here are the restaraunts:</p>
-      <ul>
-          {% for restaraunt in restaraunts %}
-            <li>{{ restaraunt.getRestarauntName }}</li>
+    <p>Here are all your restaraunts</p>
+    <ul>
+        {% for restaraunt in restaraunts %}
+            <li><a href = "/restaraunts/{{ restaraunt.getId }}">{{ restaraunt.getRestarauntName }}</a></li>
+        {% endfor %}
+    </ul>
 
-
-
-          {% endfor %}
-      </ul>
+    {% else %}
+        <p>There are no restaraunts yet!</p>
     {% endif %}
 
     <h4>Add a restaraunt</h4>

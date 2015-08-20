@@ -70,7 +70,7 @@
         return $app['twig']->render('cuisine_edit.html.twig', array('cuisine' => $cuisine));
     });
 
-    $app->patch("/categories/{id}", function($id) use ($app) {
+    $app->patch("/cuisines/{id}", function($id) use ($app) {
         $cuisine_name = $_POST['CuisineName'];
         $cuisine = Cuisine::find($id);
         $cuisine->update($cuisine_name);
@@ -83,6 +83,25 @@
       return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
 
   });
-  
+
+  $app->get("/restaraunts/{id}", function($id) use ($app) {
+      $restaraunt = Restaraunt::find($id);
+      return $app['twig']->render('restaraunt.html.twig', array('restaraunt' => $restaraunt));
+  });
+
+
+    $app->get("/restaraunts/{id}/edit", function($id) use ($app) {
+            $restaraunt = Restaraunt::find($id);
+            return $app['twig']->render('restaraunt_edit.html.twig', array('restaraunt' => $restaraunt));
+    });
+
+    $app->patch("/restaraunts/{id}", function($id) use ($app) {
+        $restaraunt_name = $_POST['RestarauntName'];
+        $restaraunt = Restaraunt::find($id);
+        $cuisine = Cuisine::find($id);
+        $restaraunt->update($restaraunt_name);
+        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunt' => $restaraunt, 'restaraunts' => $cuisine->getRestaraunts()));
+    });
+
     return $app;
 ?>
