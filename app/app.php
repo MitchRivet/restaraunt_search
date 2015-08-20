@@ -42,7 +42,10 @@
     $app->post("/restaraunts", function() use ($app) {
         $restaraunt_name = $_POST['RestarauntName'];
         $cuisine_id = $_POST['cuisine_id'];
-        $restaraunt = new Restaraunt($restaraunt_name, $id = null, $cuisine_id);
+        $address = $_POST['address'];
+        $menu = $_POST['menu'];
+        $hours = $_POST['hours']; 
+        $restaraunt = new Restaraunt($restaraunt_name, $id = null, $cuisine_id, $address, $menu, $hours);
         $restaraunt->save();
         $cuisine = Cuisine::find($cuisine_id);
         return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => $cuisine->getRestaraunts()));

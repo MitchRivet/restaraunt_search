@@ -72,7 +72,10 @@
                 $restaraunt_name = $restaraunt['restaraunt_name'];
                 $id = $restaraunt['id'];
                 $cuisine_id = $restaraunt['cuisine_id'];
-                $new_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+                $address = $restaraunt['address'];
+                $menu = $restaraunt['menu'];
+                $hours = $restaraunt['hours'];
+                $new_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id, $address, $menu, $hours);
                 array_push($restaraunts, $new_restaraunt);
             }
 

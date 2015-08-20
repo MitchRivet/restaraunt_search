@@ -9,7 +9,12 @@
     <p>Here are all your restaraunts</p>
     <ul>
         {% for restaraunt in restaraunts %}
-            <li><a href = "/restaraunts/{{ restaraunt.getId }}">{{ restaraunt.getRestarauntName }}</a></li>
+             <li><a href = "/restaraunts/{{ restaraunt.getId }}">{{ restaraunt.getRestarauntName }}</a></li>
+             <ul>
+                 <li>{{ restaraunt.getAddress }}</li>
+                 <li>{{ restaraunt.getHours }}</li>
+                 <li>{{ restaraunt.getMenu }}</li>
+            </ul>
         {% endfor %}
     </ul>
 
@@ -25,6 +30,14 @@
         <label for='RestarauntName'>restaraunt name</label>
         <input id='RestarauntName' name='RestarauntName' type='text'>
 
+        <label for='address'>address</label>
+        <input id='address' name='address' type='text'>
+
+        <label for='hours'>hours</label>
+        <input id='hours' name='hours' type='text'>
+
+        <label for='menu'>menu</label>
+        <input id='menu' name='menu' type='text'>
 
         <button type='submit'>Add restaraunt</button>
     </form>
