@@ -6,8 +6,9 @@
     */
 
     require_once "src/Cuisine.php";
+    require_once "src/Restaraunt.php";
 
-    $server = 'mysql:host=localhost;dbname=restaraunt_search';
+    $server = 'mysql:host=localhost;dbname=restaraunt_search_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -110,7 +111,7 @@
             $this->assertEquals($test_cuisine, $result);
         }
 
-        function testsGetRestaraunts()
+        function test_getRestaraunts()
         {
             $cuisine_name = "Italian";
             $id = null;
@@ -119,19 +120,21 @@
 
             $test_cuisine_id = $test_cuisine->getId();
 
-            $restaraunt_name = "Uncle Chuck's Friend Pig";
+            $restaraunt_name = "Uncle Chucks Friend Pig";
             $test_restaraunt = new Restaraunt($restaraunt_name, $id, $test_cuisine_id);
-            $test_task->save();
+            $test_restaraunt->save();
 
             $restaraunt_name2 = "Yum Yum Kitchen";
             $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $test_cuisine_id);
             $test_restaraunt2->save();
 
             //Act
-            $result = $test_category->getTasks();
+            $result = $test_cuisine->getRestaraunts();
 
             //Assert
-            $this->assertEquals([$test_task, $test_task2], $result);
+            $this->assertEquals([$test_restaraunt, $test_restaraunt2], $result);
+
+
         }
     }
 

@@ -40,7 +40,7 @@ class Restaraunt
     //Save function
     function save()
     {
-          $statement = $GLOBALS['DB']->exec("INSERT INTO restaraunts (restaraunt_name, cuisine_id) VALUES ('{$this->getRestarauntName()}', {$this->getCuisineId()})");
+          $GLOBALS['DB']->exec("INSERT INTO restaraunts (restaraunt_name, cuisine_id) VALUES ('{$this->getRestarauntName()}', {$this->getCuisineId()})");
           $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
@@ -54,7 +54,7 @@ class Restaraunt
             $restaraunt_name = $restaraunt['restaraunt_name'];
             $id = $restaraunt['id'];
             $cuisine_id = $restaraunt['cuisine_id'];
-            $new_restaraunt = new Restaraunt ($restaraunt_name, $id, $cuisine_id);
+            $new_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
             array_push($restaraunts, $new_restaraunt);
         }
         return $restaraunts;

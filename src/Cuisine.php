@@ -75,6 +75,7 @@
                 $new_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
                 array_push($restaraunts, $new_restaraunt);
             }
+
             return $restaraunts;
         }
 

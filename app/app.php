@@ -10,7 +10,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=restaraunt_search';
+    $server = 'mysql:host=localhost;dbname=restaraunt_search_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -47,6 +47,7 @@
 
     $app->post("/delete_restaraunts", function() use ($app) {
         Restaraunt::deleteAll();
+
         return $app['twig']->render('index.html.twig');
     });
 

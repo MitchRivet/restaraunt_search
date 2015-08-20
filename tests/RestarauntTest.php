@@ -8,7 +8,7 @@
 require_once "src/Restaraunt.php";
 require_once "src/Cuisine.php";
 
-$server = 'mysql:host=localhost;dbname=restaraunt_search';
+$server = 'mysql:host=localhost;dbname=restaraunt_search_test';
 $username = 'root';
 $password = 'root';
 $DB = new PDO($server, $username, $password);
@@ -29,7 +29,7 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $test_cuisine = new Cuisine($cuisine_name, $id);
         $test_cuisine->save();
 
-        $restaraunt_name = "Mama's Home Country Cookin";
+        $restaraunt_name = "Mamas Home Country Cookin";
         $cuisine_id = $test_cuisine->getId();
         $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
 
@@ -46,12 +46,12 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $test_cuisine = new Cuisine($cuisine_name, $id);
         $test_cuisine->save();
 
-        $restaraunt_name = "Mama's Home Country Cookin";
+        $restaraunt_name = "Mamas Home Country Cookin";
         $cuisine_id = $test_cuisine->getId();
         $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
         $test_restaraunt->save();
 
-        $restaraunt_name2 = "Big Bob's Fried Alligator";
+        $restaraunt_name2 = "Big Bobs Fried Alligator";
         $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $cuisine_id);
         $test_restaraunt2->save();
 
@@ -69,12 +69,12 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $test_cuisine = new Cuisine($cuisine_name, $id);
         $test_cuisine->save();
 
-        $restaraunt_name = "Mama's Home Country Cookin";
+        $restaraunt_name = "Mamas Home Country Cookin";
         $cuisine_id = $test_cuisine->getId();
         $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
         $test_restaraunt->save();
 
-        $restaraunt_name2 = "Big Bob's Fried Alligator";
+        $restaraunt_name2 = "Big Bobs Fried Alligator";
         $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $cuisine_id);
         $test_restaraunt2->save();
 
@@ -93,7 +93,7 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $test_cuisine = new Cuisine($cuisine_name, $id);
         $test_cuisine->save();
 
-        $restaraunt_name = "Mama's Home Country Cookin";
+        $restaraunt_name = "Mamas Home Country Cookin";
         $cuisine_id = $test_cuisine->getId();
         $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
         $test_restaraunt->save();
@@ -113,7 +113,7 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $test_cuisine = new Cuisine($cuisine_name, $id);
         $test_cuisine->save();
 
-        $restaraunt_name = "Mama's Home Country Cookin";
+        $restaraunt_name = "Mamas Home Country Cookin";
         $cuisine_id = $test_cuisine->getId();
         $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
         $test_restaraunt->save();
@@ -133,12 +133,12 @@ class RestarauntTest extends PHPUnit_Framework_TestCase
         $test_cuisine = new Cuisine($cuisine_name, $id);
         $test_cuisine->save();
 
-        $restaraunt_name = "Mama's Home Country Cookin";
+        $restaraunt_name = "Mamas Home Country Cookin";
         $cuisine_id = $test_cuisine->getId();
         $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
         $test_restaraunt->save();
 
-        $restaraunt_name2 = "Big Bob's Fried Alligator";
+        $restaraunt_name2 = "Big Bobs Fried Alligator";
         $test_restaraunt2 = new Restaraunt($restaraunt_name2, $id, $cuisine_id);
         $test_restaraunt2->save();
 
