@@ -16,5 +16,11 @@
         <button type='submit'>Add restaraunt</button>
     </form>
 
+    <form action="/cuisines/{{ cuisine.getId }}" method="post">
+      <input name="_method" type="hidden" value="delete">
+
+      <button type ='submit'>Delete this cuisine</button>
+    </form>
+
   </body>
 </html>

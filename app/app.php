@@ -77,5 +77,12 @@
         return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunts' => $cuisine->getRestaraunts()));
     });
 
+    $app->delete("/cuisines/{id}", function($id) use ($app) {
+      $cuisine = Cuisine::find($id);
+      $cuisine->delete();
+      return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
+
+  });
+  
     return $app;
 ?>
