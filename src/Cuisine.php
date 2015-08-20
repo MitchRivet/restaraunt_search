@@ -79,7 +79,17 @@
             return $restaraunts;
         }
 
+        function update($new_cuisine_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE cuisines SET cuisine_name = '{$new_cuisine_name}' WHERE id = {$this->getId()};");
+            $this->setCuisineName($new_cuisine_name);
+        }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM restaraunts WHERE cuisine_id = {$this->getId()};");
+        }
 
     }
 ?>

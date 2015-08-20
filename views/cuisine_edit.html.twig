@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Restaraunt List</title>
+  </head>
+  <body>
+    <h1>Update the {{ cuisine.getCuisineName }} cuisine</h1>
+
+
+    <form action="/cuisines/{{ cuisine.getId }}" method="post">
+        <input name="_method" type="hidden" value="patch">
+
+        <label for='CuisineName'>cuisine name</label>
+        <input id='CuisineName' name='CuisineName' type='text'>
+
+
+        <button type='submit'>Add restaraunt</button>
+    </form>
+
+  </body>
+</html>

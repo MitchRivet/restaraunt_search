@@ -133,9 +133,64 @@
 
             //Assert
             $this->assertEquals([$test_restaraunt, $test_restaraunt2], $result);
-
-
         }
+
+        function testUpdate()
+        {
+          //Arrange
+          $cuisine_name = "Italian";
+          $id = null;
+          $test_cuisine = new Cuisine($cuisine_name, $id);
+          $test_cuisine->save();
+
+          $new_cuisine_name = "Greek";
+
+          //Act
+          $test_cuisine->update($new_cuisine_name);
+
+          //Assert
+          $this->assertEquals("Greek", $test_cuisine->getCuisineName());
+        }
+
+        function testDelete()
+        {
+          //Arrange
+          $cuisine_name = "Italian";
+          $id = null;
+          $test_cuisine = new Cuisine($cuisine_name, $id);
+          $test_cuisine->save();
+
+          $cuisine_name2 = "Chinese";
+          $test_cuisine2 = new Cuisine($cuisine_name2, $id);
+          $test_cuisine2->save();
+
+          //Act
+          $test_cuisine->delete();
+
+          //Assert
+          $this->assertEquals([$test_cuisine2], Cuisine::getAll());
+        }
+
+        function testDeleteCuisineRestaraunts()
+        {
+          //Arrange
+          $cuisine_name = "Italian";
+          $id = null;
+          $test_cuisine = new Cuisine($cuisine_name, $id);
+          $test_cuisine->save();
+
+          $restaraunt_name = "Big Bubba/'s Tuscan Pizza";
+          $cuisine_id = $test_cuisine->getId();
+          $test_restaraunt = new Restaraunt($restaraunt_name, $id, $cuisine_id);
+          $test_restaraunt->save();
+
+          //Act
+          $test_cuisine->delete();
+
+          //Assert
+          $this->assertEquals([], Restaraunt::getAll());
+        }
+
     }
 
 ?>

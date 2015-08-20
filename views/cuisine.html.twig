@@ -12,7 +12,7 @@
             <li>{{ restaraunt.getRestarauntName }}</li>
 
 
-                
+
           {% endfor %}
       </ul>
     {% endif %}
@@ -29,11 +29,7 @@
         <button type='submit'>Add restaraunt</button>
     </form>
 
-    <form action='/delete_restaraunts' method = 'post'>
-
-        <button type='submit'>Clear</button>
-
-    </form>
+    <p><a href="/cuisines/{{ cuisine.getId }}/edit">Edit this cuisine</a></p>
 
     <p><a href='/'>Home</a></p>
 
