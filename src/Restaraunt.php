@@ -85,6 +85,11 @@ class Restaraunt
         $GLOBALS['DB']->exec("UPDATE restaraunts SET restaraunt_name = '{$new_restaraunt_name}' WHERE id = {$this->getId()};");
         $this->setRestarauntName($new_restaraunt_name);
     }
+
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM restaraunts WHERE id = {$this->getId()};"); 
+    }
 }
 
 

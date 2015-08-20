@@ -84,23 +84,32 @@
 
   });
 
+
   $app->get("/restaraunts/{id}", function($id) use ($app) {
       $restaraunt = Restaraunt::find($id);
       return $app['twig']->render('restaraunt.html.twig', array('restaraunt' => $restaraunt));
   });
 
-
-    $app->get("/restaraunts/{id}/edit", function($id) use ($app) {
-            $restaraunt = Restaraunt::find($id);
-            return $app['twig']->render('restaraunt_edit.html.twig', array('restaraunt' => $restaraunt));
-    });
+  $app->get("/restaraunts/{id}/edit", function($id) use ($app) {
+      $restaraunt = Restaraunt::find($id);
+      return $app['twig']->render('restaraunt.html.twig', array('restaraunt' => $restaraunt));
+  });
 
     $app->patch("/restaraunts/{id}", function($id) use ($app) {
         $restaraunt_name = $_POST['RestarauntName'];
         $restaraunt = Restaraunt::find($id);
         $cuisine = Cuisine::find($id);
         $restaraunt->update($restaraunt_name);
-        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaraunt' => $restaraunt, 'restaraunts' => $cuisine->getRestaraunts()));
+        return $app['twig']->render('restaraunt.html.twig', array('restaraunt' => $restaraunt));
+    });
+
+    $app->delete("/restaraunts/{id}", function($id) use ($app) {
+        $restaraunt = Restaraunt::find($id);
+        $cuisine = Cuisine::find($restaraunt->getCuisineId());
+        $restaraunt->delete();
+        $restaraunts = Restaraunt::getAll();
+
+        return $app['twig']->render('cuisine.html.twig', array('cuisine'=> $cuisine, 'restaraunts' => $restaraunts));
     });
 
     return $app;

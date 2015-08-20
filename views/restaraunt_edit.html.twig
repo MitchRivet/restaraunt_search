@@ -1,10 +1,22 @@
-<h1>Update the {{ restaraunt.getRestarauntName }} listing</h1>
 
-<form action="/restaraunts/{{ restaraunt.getId }}" method="post">
-  <input name="_method" type="hidden" value="patch">
+<html>
+<head>
+    <title>Edit Restaraunt</title>
+</head>
+<body>
+    <h1>Update the {{ restaraunt.getRestarauntName }} restaraunt</h1>
 
-  <label for="RestarauntName">Rename your Restaraunt:</label>
-  <input id="RestarauntName" name="RestarauntName" type="text">
 
-  <button type="submit">Update</button>
+    <form action="/restaraunts/{{ restaraunt.getId }}" method="post">
+        <input name="_method" type="hidden" value="patch">
+
+        <label for='restarauntName'>restaraunt name</label>
+        <input id='restarauntName' name='restarauntName' type='text'>
+
+
+        <button type='submit'>Change restaraunt</button>
+    </form>
+
 </form>
+</body>
+</html>
